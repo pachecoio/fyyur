@@ -1,1 +1,593 @@
 
+2020-08-19 20:34:49,795 INFO: errors [in D:\development\back\course\udacity\fyyur\app.py:46]
+2020-08-19 20:36:42,680 INFO: errors [in D:\development\back\course\udacity\fyyur\app.py:46]
+2020-08-19 20:37:30,719 ERROR: Exception on /venues [GET] [in D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1276, in _execute_context
+    self.dialect.do_execute(
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\sqlalchemy\engine\default.py", line 593, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: Venue
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:\development\back\course\udacity\fyyur\controllers\venue_controller.py", line 11, in venues
+    venues = Venue.query.all()
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\sqlalchemy\orm\query.py", line 3346, in all
+    return list(self)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\sqlalchemy\orm\query.py", line 3508, in __iter__
+    return self._execute_and_instances(context)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\sqlalchemy\orm\query.py", line 3533, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1011, in execute
+    return meth(self, multiparams, params)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\sqlalchemy\sql\elements.py", line 298, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1124, in _execute_clauseelement
+    ret = self._execute_context(
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1316, in _execute_context
+    self._handle_dbapi_exception(
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1510, in _handle_dbapi_exception
+    util.raise_(
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\sqlalchemy\util\compat.py", line 182, in raise_
+    raise exception
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1276, in _execute_context
+    self.dialect.do_execute(
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\sqlalchemy\engine\default.py", line 593, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: Venue
+[SQL: SELECT "Venue".id AS "Venue_id", "Venue".name AS "Venue_name", "Venue".city AS "Venue_city", "Venue".state AS "Venue_state", "Venue".address AS "Venue_address", "Venue".phone AS "Venue_phone", "Venue".image_link AS "Venue_image_link", "Venue".facebook_link AS "Venue_facebook_link", "Venue".website AS "Venue_website", "Venue".seeking_talent AS "Venue_seeking_talent", "Venue".seeking_description AS "Venue_seeking_description" 
+FROM "Venue"]
+(Background on this error at: http://sqlalche.me/e/13/e3q8)
+2020-08-19 20:37:33,961 ERROR: Exception on /venues [GET] [in D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1276, in _execute_context
+    self.dialect.do_execute(
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\sqlalchemy\engine\default.py", line 593, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: Venue
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:\development\back\course\udacity\fyyur\controllers\venue_controller.py", line 11, in venues
+    venues = Venue.query.all()
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\sqlalchemy\orm\query.py", line 3346, in all
+    return list(self)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\sqlalchemy\orm\query.py", line 3508, in __iter__
+    return self._execute_and_instances(context)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\sqlalchemy\orm\query.py", line 3533, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1011, in execute
+    return meth(self, multiparams, params)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\sqlalchemy\sql\elements.py", line 298, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1124, in _execute_clauseelement
+    ret = self._execute_context(
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1316, in _execute_context
+    self._handle_dbapi_exception(
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1510, in _handle_dbapi_exception
+    util.raise_(
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\sqlalchemy\util\compat.py", line 182, in raise_
+    raise exception
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1276, in _execute_context
+    self.dialect.do_execute(
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\sqlalchemy\engine\default.py", line 593, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: Venue
+[SQL: SELECT "Venue".id AS "Venue_id", "Venue".name AS "Venue_name", "Venue".city AS "Venue_city", "Venue".state AS "Venue_state", "Venue".address AS "Venue_address", "Venue".phone AS "Venue_phone", "Venue".image_link AS "Venue_image_link", "Venue".facebook_link AS "Venue_facebook_link", "Venue".website AS "Venue_website", "Venue".seeking_talent AS "Venue_seeking_talent", "Venue".seeking_description AS "Venue_seeking_description" 
+FROM "Venue"]
+(Background on this error at: http://sqlalche.me/e/13/e3q8)
+2020-08-19 20:38:10,375 INFO: errors [in D:\development\back\course\udacity\fyyur\app.py:46]
+2020-08-19 20:39:44,795 INFO: errors [in D:\development\back\course\udacity\fyyur\app.py:46]
+2020-08-19 20:39:54,643 INFO: errors [in D:\development\back\course\udacity\fyyur\app.py:46]
+2020-08-19 20:40:00,101 INFO: errors [in D:\development\back\course\udacity\fyyur\app.py:46]
+2020-08-19 20:40:06,402 INFO: errors [in D:\development\back\course\udacity\fyyur\app.py:46]
+2020-08-19 20:41:50,332 INFO: errors [in D:\development\back\course\udacity\fyyur\app.py:46]
+2020-08-19 20:42:28,317 INFO: errors [in D:\development\back\course\udacity\fyyur\app.py:46]
+2020-08-19 20:43:59,110 INFO: errors [in D:\development\back\course\udacity\fyyur\app.py:46]
+2020-08-19 20:44:37,831 INFO: errors [in D:\development\back\course\udacity\fyyur\app.py:46]
+2020-08-19 20:44:59,030 INFO: errors [in D:\development\back\course\udacity\fyyur\app.py:46]
+2020-08-19 20:45:03,526 INFO: errors [in D:\development\back\course\udacity\fyyur\app.py:46]
+2020-08-19 20:45:25,854 INFO: errors [in D:\development\back\course\udacity\fyyur\app.py:46]
+2020-08-19 20:46:17,906 INFO: errors [in D:\development\back\course\udacity\fyyur\app.py:46]
+2020-08-19 20:46:51,435 ERROR: Exception on /venues/create [GET] [in D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:\development\back\course\udacity\fyyur\controllers\venue_controller.py", line 152, in create_venue_form
+    form = VenueForm()
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\wtforms\form.py", line 208, in __call__
+    return type.__call__(cls, *args, **kwargs)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask_wtf\form.py", line 157, in __init__
+    super(Form, self).__init__(*args, **kwargs)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask_wtf\form.py", line 87, in __init__
+    super(FlaskForm, self).__init__(formdata=formdata, **kwargs)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\wtforms\form.py", line 274, in __init__
+    self.process(formdata, obj, data=data, **kwargs)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\wtforms\form.py", line 131, in process
+    field.process(formdata)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\wtforms\csrf\core.py", line 43, in process
+    self.current_token = self.csrf_impl.generate_csrf_token(self)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask_wtf\csrf.py", line 139, in generate_csrf_token
+    return generate_csrf(
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask_wtf\csrf.py", line 33, in generate_csrf
+    secret_key = _get_config(
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask_wtf\csrf.py", line 128, in _get_config
+    raise RuntimeError(message)
+RuntimeError: A secret key is required to use CSRF.
+2020-08-19 20:47:48,960 INFO: errors [in D:\development\back\course\udacity\fyyur\app.py:46]
+2020-08-19 20:47:52,051 ERROR: Exception on /venues [GET] [in D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1276, in _execute_context
+    self.dialect.do_execute(
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\sqlalchemy\engine\default.py", line 593, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: Venue
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:\development\back\course\udacity\fyyur\controllers\venue_controller.py", line 11, in venues
+    venues = Venue.query.all()
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\sqlalchemy\orm\query.py", line 3346, in all
+    return list(self)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\sqlalchemy\orm\query.py", line 3508, in __iter__
+    return self._execute_and_instances(context)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\sqlalchemy\orm\query.py", line 3533, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1011, in execute
+    return meth(self, multiparams, params)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\sqlalchemy\sql\elements.py", line 298, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1124, in _execute_clauseelement
+    ret = self._execute_context(
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1316, in _execute_context
+    self._handle_dbapi_exception(
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1510, in _handle_dbapi_exception
+    util.raise_(
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\sqlalchemy\util\compat.py", line 182, in raise_
+    raise exception
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1276, in _execute_context
+    self.dialect.do_execute(
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\sqlalchemy\engine\default.py", line 593, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: Venue
+[SQL: SELECT "Venue".id AS "Venue_id", "Venue".name AS "Venue_name", "Venue".city AS "Venue_city", "Venue".state AS "Venue_state", "Venue".address AS "Venue_address", "Venue".phone AS "Venue_phone", "Venue".image_link AS "Venue_image_link", "Venue".facebook_link AS "Venue_facebook_link", "Venue".website AS "Venue_website", "Venue".seeking_talent AS "Venue_seeking_talent", "Venue".seeking_description AS "Venue_seeking_description" 
+FROM "Venue"]
+(Background on this error at: http://sqlalche.me/e/13/e3q8)
+2020-08-19 20:47:54,469 ERROR: Exception on /venues [GET] [in D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1276, in _execute_context
+    self.dialect.do_execute(
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\sqlalchemy\engine\default.py", line 593, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: Venue
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:\development\back\course\udacity\fyyur\controllers\venue_controller.py", line 11, in venues
+    venues = Venue.query.all()
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\sqlalchemy\orm\query.py", line 3346, in all
+    return list(self)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\sqlalchemy\orm\query.py", line 3508, in __iter__
+    return self._execute_and_instances(context)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\sqlalchemy\orm\query.py", line 3533, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1011, in execute
+    return meth(self, multiparams, params)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\sqlalchemy\sql\elements.py", line 298, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1124, in _execute_clauseelement
+    ret = self._execute_context(
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1316, in _execute_context
+    self._handle_dbapi_exception(
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1510, in _handle_dbapi_exception
+    util.raise_(
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\sqlalchemy\util\compat.py", line 182, in raise_
+    raise exception
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1276, in _execute_context
+    self.dialect.do_execute(
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\sqlalchemy\engine\default.py", line 593, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: Venue
+[SQL: SELECT "Venue".id AS "Venue_id", "Venue".name AS "Venue_name", "Venue".city AS "Venue_city", "Venue".state AS "Venue_state", "Venue".address AS "Venue_address", "Venue".phone AS "Venue_phone", "Venue".image_link AS "Venue_image_link", "Venue".facebook_link AS "Venue_facebook_link", "Venue".website AS "Venue_website", "Venue".seeking_talent AS "Venue_seeking_talent", "Venue".seeking_description AS "Venue_seeking_description" 
+FROM "Venue"]
+(Background on this error at: http://sqlalche.me/e/13/e3q8)
+2020-08-19 20:48:40,874 INFO: errors [in D:\development\back\course\udacity\fyyur\app.py:46]
+2020-08-19 21:17:58,717 INFO: errors [in D:\development\back\course\udacity\fyyur\app.py:46]
+2020-08-19 21:18:00,917 ERROR: Exception on /venues [GET] [in D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 1926, in dispatch_request
+    self.raise_routing_exception(req)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 1908, in raise_routing_exception
+    raise request.routing_exception
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\ctx.py", line 350, in match_request
+    result = self.url_adapter.match(return_rule=True)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\werkzeug\routing.py", line 1945, in match
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 1816, in handle_user_exception
+    return self.handle_http_exception(e)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 1744, in handle_http_exception
+    return handler(e)
+  File "D:\development\back\course\udacity\fyyur\controllers\__init__.py", line 10, in not_found_error
+    return render_template("errors/404.html"), 404
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\templating.py", line 137, in render_template
+    return _render(
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\jinja2\environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "D:\development\back\course\udacity\fyyur\templates\errors\404.html", line 1, in top-level template code
+    {% extends 'layouts/main.html' %}
+  File "D:\development\back\course\udacity\fyyur\templates\layouts\main.html", line 81, in top-level template code
+    <li {% if request.endpoint == 'venues' %} class="active" {% endif %}><a href="{{ url_for('venues') }}">Venues</a></li>
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\helpers.py", line 370, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 2216, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\helpers.py", line 357, in url_for
+    rv = url_adapter.build(
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\werkzeug\routing.py", line 2179, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'venues'. Did you mean 'index' instead?
+2020-08-19 21:18:01,289 ERROR: Exception on /favicon.ico [GET] [in D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 1926, in dispatch_request
+    self.raise_routing_exception(req)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 1908, in raise_routing_exception
+    raise request.routing_exception
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\ctx.py", line 350, in match_request
+    result = self.url_adapter.match(return_rule=True)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\werkzeug\routing.py", line 1945, in match
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 1816, in handle_user_exception
+    return self.handle_http_exception(e)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 1744, in handle_http_exception
+    return handler(e)
+  File "D:\development\back\course\udacity\fyyur\controllers\__init__.py", line 10, in not_found_error
+    return render_template("errors/404.html"), 404
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\templating.py", line 137, in render_template
+    return _render(
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\jinja2\environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "D:\development\back\course\udacity\fyyur\templates\errors\404.html", line 1, in top-level template code
+    {% extends 'layouts/main.html' %}
+  File "D:\development\back\course\udacity\fyyur\templates\layouts\main.html", line 81, in top-level template code
+    <li {% if request.endpoint == 'venues' %} class="active" {% endif %}><a href="{{ url_for('venues') }}">Venues</a></li>
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\helpers.py", line 370, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 2216, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\helpers.py", line 357, in url_for
+    rv = url_adapter.build(
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\werkzeug\routing.py", line 2179, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'venues'. Did you mean 'index' instead?
+2020-08-19 21:18:03,465 ERROR: Exception on /venues [GET] [in D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 1926, in dispatch_request
+    self.raise_routing_exception(req)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 1908, in raise_routing_exception
+    raise request.routing_exception
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\ctx.py", line 350, in match_request
+    result = self.url_adapter.match(return_rule=True)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\werkzeug\routing.py", line 1945, in match
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 1816, in handle_user_exception
+    return self.handle_http_exception(e)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 1744, in handle_http_exception
+    return handler(e)
+  File "D:\development\back\course\udacity\fyyur\controllers\__init__.py", line 10, in not_found_error
+    return render_template("errors/404.html"), 404
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\templating.py", line 137, in render_template
+    return _render(
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\jinja2\environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "D:\development\back\course\udacity\fyyur\templates\errors\404.html", line 1, in top-level template code
+    {% extends 'layouts/main.html' %}
+  File "D:\development\back\course\udacity\fyyur\templates\layouts\main.html", line 81, in top-level template code
+    <li {% if request.endpoint == 'venues' %} class="active" {% endif %}><a href="{{ url_for('venues') }}">Venues</a></li>
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\helpers.py", line 370, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 2216, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\helpers.py", line 357, in url_for
+    rv = url_adapter.build(
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\werkzeug\routing.py", line 2179, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'venues'. Did you mean 'index' instead?
+2020-08-19 21:18:03,614 ERROR: Exception on /favicon.ico [GET] [in D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 1926, in dispatch_request
+    self.raise_routing_exception(req)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 1908, in raise_routing_exception
+    raise request.routing_exception
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\ctx.py", line 350, in match_request
+    result = self.url_adapter.match(return_rule=True)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\werkzeug\routing.py", line 1945, in match
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 1816, in handle_user_exception
+    return self.handle_http_exception(e)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 1744, in handle_http_exception
+    return handler(e)
+  File "D:\development\back\course\udacity\fyyur\controllers\__init__.py", line 10, in not_found_error
+    return render_template("errors/404.html"), 404
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\templating.py", line 137, in render_template
+    return _render(
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\jinja2\environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "D:\development\back\course\udacity\fyyur\templates\errors\404.html", line 1, in top-level template code
+    {% extends 'layouts/main.html' %}
+  File "D:\development\back\course\udacity\fyyur\templates\layouts\main.html", line 81, in top-level template code
+    <li {% if request.endpoint == 'venues' %} class="active" {% endif %}><a href="{{ url_for('venues') }}">Venues</a></li>
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\helpers.py", line 370, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 2216, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\helpers.py", line 357, in url_for
+    rv = url_adapter.build(
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\werkzeug\routing.py", line 2179, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'venues'. Did you mean 'index' instead?
+2020-08-19 21:18:36,872 INFO: errors [in D:\development\back\course\udacity\fyyur\app.py:46]
+2020-08-19 21:20:18,447 INFO: errors [in D:\development\back\course\udacity\fyyur\app.py:46]
+2020-08-19 21:20:22,222 ERROR: Exception on /artists [GET] [in D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+TypeError: artists() missing 1 required positional argument: 'self'
+2020-08-19 21:20:56,587 INFO: errors [in D:\development\back\course\udacity\fyyur\app.py:46]
+2020-08-19 21:21:31,068 INFO: errors [in D:\development\back\course\udacity\fyyur\app.py:46]
+2020-08-19 21:23:21,248 INFO: errors [in D:\development\back\course\udacity\fyyur\app.py:46]
+2020-08-19 21:24:49,337 INFO: errors [in D:\development\back\course\udacity\fyyur\app.py:46]
+2020-08-19 21:25:01,756 ERROR: Exception on /venues/create [GET] [in D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:\development\back\course\udacity\fyyur\controllers\venue_controller.py", line 152, in create_venue_form
+    form = VenueForm()
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\wtforms\form.py", line 208, in __call__
+    return type.__call__(cls, *args, **kwargs)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask_wtf\form.py", line 157, in __init__
+    super(Form, self).__init__(*args, **kwargs)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask_wtf\form.py", line 87, in __init__
+    super(FlaskForm, self).__init__(formdata=formdata, **kwargs)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\wtforms\form.py", line 274, in __init__
+    self.process(formdata, obj, data=data, **kwargs)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\wtforms\form.py", line 131, in process
+    field.process(formdata)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\wtforms\csrf\core.py", line 43, in process
+    self.current_token = self.csrf_impl.generate_csrf_token(self)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask_wtf\csrf.py", line 139, in generate_csrf_token
+    return generate_csrf(
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask_wtf\csrf.py", line 33, in generate_csrf
+    secret_key = _get_config(
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask_wtf\csrf.py", line 128, in _get_config
+    raise RuntimeError(message)
+RuntimeError: A secret key is required to use CSRF.
+2020-08-19 21:25:57,849 INFO: errors [in D:\development\back\course\udacity\fyyur\app.py:46]
+2020-08-19 21:26:00,425 ERROR: Exception on /venues/create [GET] [in D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:\development\back\course\udacity\fyyur\controllers\venue_controller.py", line 152, in create_venue_form
+    form = VenueForm()
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\wtforms\form.py", line 208, in __call__
+    return type.__call__(cls, *args, **kwargs)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask_wtf\form.py", line 157, in __init__
+    super(Form, self).__init__(*args, **kwargs)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask_wtf\form.py", line 87, in __init__
+    super(FlaskForm, self).__init__(formdata=formdata, **kwargs)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\wtforms\form.py", line 274, in __init__
+    self.process(formdata, obj, data=data, **kwargs)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\wtforms\form.py", line 131, in process
+    field.process(formdata)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\wtforms\csrf\core.py", line 43, in process
+    self.current_token = self.csrf_impl.generate_csrf_token(self)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask_wtf\csrf.py", line 139, in generate_csrf_token
+    return generate_csrf(
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask_wtf\csrf.py", line 33, in generate_csrf
+    secret_key = _get_config(
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask_wtf\csrf.py", line 128, in _get_config
+    raise RuntimeError(message)
+RuntimeError: A secret key is required to use CSRF.
+2020-08-19 21:26:02,811 ERROR: Exception on /venues/create [GET] [in D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:\development\back\course\udacity\fyyur\controllers\venue_controller.py", line 152, in create_venue_form
+    form = VenueForm()
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\wtforms\form.py", line 208, in __call__
+    return type.__call__(cls, *args, **kwargs)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask_wtf\form.py", line 157, in __init__
+    super(Form, self).__init__(*args, **kwargs)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask_wtf\form.py", line 87, in __init__
+    super(FlaskForm, self).__init__(formdata=formdata, **kwargs)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\wtforms\form.py", line 274, in __init__
+    self.process(formdata, obj, data=data, **kwargs)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\wtforms\form.py", line 131, in process
+    field.process(formdata)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\wtforms\csrf\core.py", line 43, in process
+    self.current_token = self.csrf_impl.generate_csrf_token(self)
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask_wtf\csrf.py", line 139, in generate_csrf_token
+    return generate_csrf(
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask_wtf\csrf.py", line 33, in generate_csrf
+    secret_key = _get_config(
+  File "D:\development\back\course\udacity\fyyur\venv\lib\site-packages\flask_wtf\csrf.py", line 128, in _get_config
+    raise RuntimeError(message)
+RuntimeError: A secret key is required to use CSRF.
