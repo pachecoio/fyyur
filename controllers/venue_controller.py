@@ -9,12 +9,12 @@ from flask import (
     url_for,
     jsonify,
 )
-from models import Venue, Genre
+from models import Venue, Genre, Show
 from forms import VenueForm
 from schemas import VenueCreateSchema
 from decorators import parse_with
 from config.database import db
-from sqlalchemy import exc
+from sqlalchemy import exc, func
 
 #  Venues
 #  ----------------------------------------------------------------
@@ -50,14 +50,30 @@ def search_venues():
     # TODO: implement search on artists with partial string search. Ensure it is case-insensitive.
     # seach for Hop should return "The Musical Hop".
     # search for "Music" should return "The Musical Hop" and "Park Square Live Music & Coffee"
+    search_term = request.form.get("search_term", "")
+    print(search_term)
+    venues = (
+        db.session.query(
+            Venue.id,
+            Venue.name,
+            func.count(Show.id).label("num_upcoming_shows")
+        )
+        .select_from(Venue)
+        .outerjoin(
+            Show, Show.venue == Venue.id
+        )
+        .filter(Venue.name.ilike("%{}%".format(search_term)))
+        .group_by(Venue.id)
+        .all()
+    )
     response = {
-        "count": 1,
-        "data": [{"id": 2, "name": "The Dueling Pianos Bar", "num_upcoming_shows": 0,}],
+        "count": len(venues),
+        "data": venues,
     }
     return render_template(
         "pages/search_venues.html",
         results=response,
-        search_term=request.form.get("search_term", ""),
+        search_term=search_term,
     )
 
 
@@ -65,6 +81,7 @@ def search_venues():
 def show_venue(venue_id):
     # shows the venue page with the given venue_id
     # TODO: replace with real venue data from the venues table, using venue_id
+    venue = Venue.query.get(venue_id)
     data1 = {
         "id": 1,
         "name": "The Musical Hop",

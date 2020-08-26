@@ -25,7 +25,13 @@ class BaseSchema(ma.Schema):
 
 
 class VenueSchema(BaseSchema):
-    seeking_talent = fields.Boolean()
+    id = fields.Integer(required=True)
+    name = fields.String(required=True)
+    city = fields.String(required=True)
+    state = fields.String(required=True)
+    address = fields.String(required=True)
+    phone = fields.String(required=True)
+    genres = fields.Method('build_genres', deserialize='load_genres')
 
 
 class VenueCreateSchema(BaseSchema):
