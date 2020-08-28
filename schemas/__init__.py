@@ -86,6 +86,28 @@ class VenueCreateSchema(BaseSchema):
         return [value]
 
 
+class VenueEditSchema(BaseSchema):
+    name = fields.String()
+    city = fields.String()
+    state = fields.String()
+    address = fields.String()
+    phone = fields.String()
+    genres = fields.Method('build_genres', deserialize='load_genres')
+    city = fields.String()
+    facebook_link = fields.String()
+    website = fields.String()
+    seeking_description = fields.String()
+    seeking_talent = fields.Boolean()
+
+    def build_genres(self, obj):
+        return obj.genres
+
+    def load_genres(self, value):
+        if isinstance(value, list):
+            return value
+        return [value]
+
+
 class ArtistSchema(BaseSchema):
     seeking_venue = fields.Boolean()
 

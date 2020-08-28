@@ -11,7 +11,7 @@ from flask import (
 )
 from models import Venue, Genre, Show
 from forms import build_venue_form
-from schemas import VenueCreateSchema, VenueSchema
+from schemas import VenueCreateSchema, VenueSchema, VenueEditSchema
 from decorators import parse_with
 from config.database import db
 from sqlalchemy import exc, func
@@ -40,6 +40,7 @@ DEFAULT_GENRES = [
     ("Soul", "Soul"),
     ("Other", "Other"),
 ]
+
 
 @app.route("/venues")
 def venues():
@@ -75,14 +76,10 @@ def search_venues():
     print(search_term)
     venues = (
         db.session.query(
-            Venue.id,
-            Venue.name,
-            func.count(Show.id).label("num_upcoming_shows")
+            Venue.id, Venue.name, func.count(Show.id).label("num_upcoming_shows")
         )
         .select_from(Venue)
-        .outerjoin(
-            Show, Show.venue == Venue.id
-        )
+        .outerjoin(Show, Show.venue == Venue.id)
         .filter(Venue.name.ilike("%{}%".format(search_term)))
         .group_by(Venue.id)
         .all()
@@ -92,9 +89,7 @@ def search_venues():
         "data": venues,
     }
     return render_template(
-        "pages/search_venues.html",
-        results=response,
-        search_term=search_term,
+        "pages/search_venues.html", results=response, search_term=search_term,
     )
 
 
@@ -124,8 +119,6 @@ def create_venue_submission(entity):
 
     genres = Genre.query.filter(Genre.name.in_(entity["genres"])).all()
     del entity["genres"]
-
-    # TODO: insert form data as a new Venue record in the db, instead
     venue = Venue(**entity, genres=genres,)
     try:
         db.session.add(venue)
@@ -144,38 +137,57 @@ def create_venue_submission(entity):
 
 @app.route("/venues/<venue_id>", methods=["DELETE"])
 def delete_venue(venue_id):
-    # TODO: Complete this endpoint for taking a venue_id, and using
-    # SQLAlchemy ORM to delete a record. Handle cases where the session commit could fail.
+    venue = Venue.query.get(venue_id)
+    
+    if not venue:
+        return jsonify(
+            message="venue not found with id".format(venue_id),
+        ), 404
+    try:
+        db.session.delete(venue)
+        db.session.commit()
+        return jsonify(
+            message="Venue {} delete successfully".format(venue.name),
+        ), 202
+    except exc.SQLAlchemyError as err:
+        db.session.rollback()
+        app.logger.info(err)
+        return jsonify(
+            message="Error deleting venue {}".format(venue.name),
+        ), 400
 
-    # BONUS CHALLENGE: Implement a button to delete a Venue on a Venue Page, have it so that
-    # clicking that button delete it from the db then redirect the user to the homepage
-    return None
 
 
 @app.route("/venues/<int:venue_id>/edit", methods=["GET"])
 def edit_venue(venue_id):
-    form = VenueForm()
-    venue = {
-        "id": 1,
-        "name": "The Musical Hop",
-        "genres": ["Jazz", "Reggae", "Swing", "Classical", "Folk"],
-        "address": "1015 Folsom Street",
-        "city": "San Francisco",
-        "state": "CA",
-        "phone": "123-123-1234",
-        "website": "https://www.themusicalhop.com",
-        "facebook_link": "https://www.facebook.com/TheMusicalHop",
-        "seeking_talent": True,
-        "seeking_description": "We are on the lookout for a local artist to play every two weeks. Please call us.",
-        "image_link": "https://images.unsplash.com/photo-1543900694-133f37abaaa5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60",
-    }
-    # TODO: populate form with values from venue with ID <venue_id>
-    return render_template("forms/edit_venue.html", form=form, venue=venue)
+    genre_list = Genre.query.all()
+    genres = [(genre.name, genre.label) for genre in genre_list]
+    form = build_venue_form(genres)
+    venue = Venue.query.get(venue_id)
+    selected_genres = [
+        genre.name for genre in venue.genres
+    ]
+    return render_template("forms/edit_venue.html", form=form, venue=venue, selected_genres=selected_genres)
 
 
 @app.route("/venues/<int:venue_id>/edit", methods=["POST"])
-def edit_venue_submission(venue_id):
-    # TODO: take values from the form submitted, and update existing
-    # venue record with ID <venue_id> using the new attributes
+@parse_with(VenueEditSchema)
+def edit_venue_submission(entity, venue_id):
+    genres = Genre.query.filter(Genre.name.in_(entity["genres"])).all()
+    venue = Venue.query.get(venue_id)
+    for key,value in entity.items():
+        if key == 'genres':
+            venue.genres = genres
+        else:
+            setattr(venue, key, value)
+    try:
+        db.session.add(venue)
+        db.session.commit()
+        db.session.refresh(venue)
+        flash("Venue " + venue.name + " was successfully listed!")
+    except exc.SQLAlchemyError as err:
+        db.session.rollback()
+        app.logger.info(err)
+        flash("An error occurred. Venue " + venue.name + " could not be listed.")
     return redirect(url_for("show_venue", venue_id=venue_id))
 
