@@ -11,17 +11,26 @@ class GenreSchema(ma.Schema):
     label = fields.Str(required=True)
 
 
-class BaseSchema(ma.Schema):
-    id = fields.Integer()
-    name = fields.Str()
-    city = fields.Str()
-    state = fields.Str()
-    phone = fields.Str()
-    genres = fields.Str()
-    image_link = fields.Str()
-    facebook_link = fields.Str()
-    website = fields.Str()
-    genres = fields.List(fields.Nested(GenreSchema))
+class BaseCreateSchema(ma.Schema):
+    name = fields.String(required=True)
+    city = fields.String(required=True)
+    state = fields.String(required=True)
+    address = fields.String(required=True)
+    phone = fields.String(required=True)
+    genres = fields.Method('build_genres', deserialize='load_genres')
+    city = fields.String(required=True)
+    facebook_link = fields.String()
+    image_link = fields.String()
+    website = fields.String()
+    seeking_description = fields.String()
+
+    def build_genres(self, obj):
+        return obj.genres
+
+    def load_genres(self, value):
+        if isinstance(value, list):
+            return value
+        return [value]
 
 
 class VenueShowSchema(ma.Schema):
@@ -36,7 +45,7 @@ class VenueShowSchema(ma.Schema):
     def build_artist_image_link(self, obj):
         return obj.artist.image_link
 
-class VenueSchema(BaseSchema):
+class BaseSchema(ma.Schema):
     id = fields.Integer(required=True)
     name = fields.String(required=True)
     city = fields.String(required=True)
@@ -46,17 +55,12 @@ class VenueSchema(BaseSchema):
     genres = fields.Method('build_genres')
     website = fields.String()
     facebook_link = fields.String(required=True)
-    seeking_talent = fields.Boolean()
     seeking_description = fields.String()
     image_link = fields.String()
     past_shows = fields.List(
         fields.Nested(VenueShowSchema),
         attribute="shows"
     )
-    # upcoming_shows = past_shows = fields.List(
-    #     fields.Nested(VenueShowSchema),
-    #     attribute="shows"
-    # )
 
     def build_genres(self, obj):
         return [
@@ -64,51 +68,43 @@ class VenueSchema(BaseSchema):
         ]
 
 
-class VenueCreateSchema(BaseSchema):
-    name = fields.String(required=True)
-    city = fields.String(required=True)
-    state = fields.String(required=True)
-    address = fields.String(required=True)
-    phone = fields.String(required=True)
-    genres = fields.Method('build_genres', deserialize='load_genres')
-    city = fields.String(required=True)
-    facebook_link = fields.String()
-    website = fields.String()
-    seeking_description = fields.String()
+class VenueSchema(BaseSchema):
     seeking_talent = fields.Boolean()
 
-    def build_genres(self, obj):
-        return obj.genres
 
-    def load_genres(self, value):
-        if isinstance(value, list):
-            return value
-        return [value]
+class VenueCreateSchema(BaseCreateSchema):
+    seeking_talent = fields.Boolean()
 
 
-class VenueEditSchema(BaseSchema):
+class VenueEditSchema(BaseCreateSchema):
     name = fields.String()
     city = fields.String()
     state = fields.String()
     address = fields.String()
     phone = fields.String()
-    genres = fields.Method('build_genres', deserialize='load_genres')
     city = fields.String()
-    facebook_link = fields.String()
-    website = fields.String()
-    seeking_description = fields.String()
     seeking_talent = fields.Boolean()
-
-    def build_genres(self, obj):
-        return obj.genres
-
-    def load_genres(self, value):
-        if isinstance(value, list):
-            return value
-        return [value]
 
 
 class ArtistSchema(BaseSchema):
+    seeking_venue = fields.Boolean()
+
+
+class ArtistListSchema(ma.Schema):
+    id = fields.Integer()
+    name = fields.String()
+
+
+class ArtistCreateSchema(BaseCreateSchema):
+    seeking_venue = fields.Boolean()
+
+class ArtistEditSchema(BaseCreateSchema):
+    name = fields.String()
+    city = fields.String()
+    state = fields.String()
+    address = fields.String()
+    phone = fields.String()
+    city = fields.String()
     seeking_venue = fields.Boolean()
 
 
