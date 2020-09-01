@@ -62,8 +62,8 @@
 		{%for show in artist.upcoming_shows %}
 		<div class="col-sm-4">
 			<div class="tile tile-show">
-				<img src="{{ show.venue_image_link }}" alt="Show Venue Image" />
-				<h5><a href="/venues/{{ show.venue_id }}">{{ show.venue_name }}</a></h5>
+				<img src="{{ show.artist_image_link }}" alt="Show Artist Image" />
+				<h5><a href="/artists/{{ show.artist_id }}">{{ show.artist_name }}</a></h5>
 				<h6>{{ show.start_time|datetime('full') }}</h6>
 			</div>
 		</div>
@@ -77,8 +77,8 @@
 		{%for show in artist.past_shows %}
 		<div class="col-sm-4">
 			<div class="tile tile-show">
-				<img src="{{ show.venue_image_link }}" alt="Show Venue Image" />
-				<h5><a href="/venues/{{ show.venue_id }}">{{ show.venue_name }}</a></h5>
+				<img src="{{ show.artist_image_link }}" alt="Show artist Image" />
+				<h5><a href="/artists/{{ show.artist_id }}">{{ show.artist_name }}</a></h5>
 				<h6>{{ show.start_time|datetime('full') }}</h6>
 			</div>
 		</div>
@@ -91,7 +91,7 @@
 			<!-- Modal content-->
 			<div class="modal-content">
 				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<button type="button" class="close" onclick="redirectTo('/')">&times;</button>
 					<h4 class="modal-title" id="modal-title">Modal Header</h4>
 				</div>
 				<div class="modal-body">

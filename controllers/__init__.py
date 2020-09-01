@@ -1,9 +1,20 @@
 from app import app
 from flask import render_template
+from controllers.venue_controller import get_recent_venues
+from controllers.artist_controller import get_recent_artists
+from schemas import VenueSchema, ArtistSchema
+
 
 @app.route("/")
 def index():
-    return render_template("pages/home.html")
+    venues = get_recent_venues()
+    artists = get_recent_artists()
+    return render_template(
+        "pages/home.html",
+        venues=VenueSchema(many=True).dump(venues),
+        artists=ArtistSchema(many=True).dump(artists)
+    )
+
 
 @app.errorhandler(404)
 def not_found_error(error):

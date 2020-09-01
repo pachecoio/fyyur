@@ -14,7 +14,8 @@ from forms import build_venue_form
 from schemas import VenueCreateSchema, VenueSchema, VenueEditSchema
 from decorators import parse_with
 from config.database import db
-from sqlalchemy import exc, func
+from sqlalchemy import exc, func, or_
+import datetime
 
 #  Venues
 #  ----------------------------------------------------------------
@@ -69,9 +70,6 @@ def venues():
 
 @app.route("/venues/search", methods=["POST"])
 def search_venues():
-    # TODO: implement search on artists with partial string search. Ensure it is case-insensitive.
-    # seach for Hop should return "The Musical Hop".
-    # search for "Music" should return "The Musical Hop" and "Park Square Live Music & Coffee"
     search_term = request.form.get("search_term", "")
     print(search_term)
     venues = (
@@ -79,8 +77,14 @@ def search_venues():
             Venue.id, Venue.name, func.count(Show.id).label("num_upcoming_shows")
         )
         .select_from(Venue)
-        .outerjoin(Show, Show.venue == Venue.id)
-        .filter(Venue.name.ilike("%{}%".format(search_term)))
+        .outerjoin(Show, Show.venue_id == Venue.id)
+        .filter(
+            or_(
+                Venue.name.ilike("%{}%".format(search_term)),
+                Venue.city.ilike("%{}%".format(search_term)),
+                Venue.state.ilike("%{}%".format(search_term)),
+            )
+        )
         .group_by(Venue.id)
         .all()
     )
@@ -96,6 +100,13 @@ def search_venues():
 @app.route("/venues/<int:venue_id>")
 def show_venue(venue_id):
     venue = Venue.query.get(venue_id)
+    shows = venue.shows
+    venue.past_shows = filter(
+        lambda show: show.start_time <= datetime.datetime.now(), shows
+    )
+    venue.upcoming_shows = filter(
+        lambda show: show.start_time > datetime.datetime.now(), shows
+    )
     return render_template("pages/show_venue.html", venue=VenueSchema().dump(venue))
 
 
@@ -189,3 +200,6 @@ def edit_venue_submission(entity, venue_id):
         flash("An error occurred. Venue " + venue.name + " could not be listed.")
     return redirect(url_for("show_venue", venue_id=venue_id))
 
+
+def get_recent_venues(limit=10):
+    return Venue.query.order_by(Venue.created_at.desc()).limit(limit)

@@ -17,9 +17,44 @@
 		<h3>
 			<a href="/shows/create"><button class="btn btn-default btn-lg">Post a show</button></a>
 		</h3>
+		{% if venues %}
+		<br />
+		<hr />
+		<div class="row">
+			<h2>Recent venues</h2>
+			<div class="venues-list">
+				{%for venue in venues %}
+				<div class="col-sm-4">
+					<div class="tile tile-venue">
+						<img src="{{ venue.image_link }}" alt="Venue Image" />
+						<h5><a href="/venues/{{ venue.id }}">{{ venue.name }}</a></h5>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+		{% endif %}
+		{% if artists %}
+		<br />
+		<hr />
+		<div class="row">
+			<h2>Recent artists</h2>
+			<div class="artists-list">
+				{%for artist in artists %}
+				<div class="col-sm-4">
+					<div class="tile tile-artist">
+						<img src="{{ artist.image_link }}" alt="artist Image" />
+						<h5><a href="/artists/{{ artist.id }}">{{ artist.name }}</a></h5>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+		{% endif %}
 	</div>
 	<div class="col-sm-6 hidden-sm hidden-xs">
-		<img id="front-splash" src="{{ url_for('static',filename='img/front-splash.jpg') }}" alt="Front Photo of Musical Band" />
+		<img id="front-splash" src="{{ url_for('static',filename='img/front-splash.jpg') }}"
+			alt="Front Photo of Musical Band" />
 	</div>
 </div>
 {% endblock %}

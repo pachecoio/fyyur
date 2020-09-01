@@ -90,7 +90,7 @@ def upgrade():
 
     # Create an ad-hoc table to use for the insert statement.
     genres_table = table(
-        "Genr", column("id", Integer), column("name", String), column("label", String)
+        "Genre", column("id", Integer), column("name", String), column("label", String)
     )
     op.bulk_insert(
         genres_table,

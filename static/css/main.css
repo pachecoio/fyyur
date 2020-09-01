@@ -209,3 +209,14 @@ h2.monospace {
 .subtitle {
   opacity: 0.5;
 }
+.tile-show {
+  position: relative;
+}
+.show-delete {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  color: red;
+}

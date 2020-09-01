@@ -1,11 +1,12 @@
 from app import app
 from flask import Flask, render_template, request, Response, flash, redirect, url_for, jsonify
-from models import Venue, Artist, Genre
+from models import Venue, Artist, Genre, Show
 from forms import build_artist_form
 from schemas import ArtistListSchema, ArtistCreateSchema, ArtistSchema, ArtistEditSchema
 from decorators import parse_with
-from sqlalchemy import exc
+from sqlalchemy import exc, func, or_
 from config.database import db
+import datetime
 
 #  Artists
 #  ----------------------------------------------------------------
@@ -18,17 +19,20 @@ def artists():
 
 @app.route("/artists/search", methods=["POST"])
 def search_artists():
-    # TODO: implement search on artists with partial string search. Ensure it is case-insensitive.
-    # seach for "A" should return "Guns N Petals", "Matt Quevado", and "The Wild Sax Band".
-    # search for "band" should return "The Wild Sax Band".
     search_term = request.form.get("search_term", "")
     artists = (
         db.session.query(
             Artist.id, Artist.name, func.count(Show.id).label("num_upcoming_shows")
         )
         .select_from(Artist)
-        .outerjoin(Show, Show.artist == Artist.id)
-        .filter(Artist.name.ilike("%{}%".format(search_term)))
+        .outerjoin(Show, Show.artist_id == Artist.id)
+        .filter(
+            or_(
+                Artist.name.ilike("%{}%".format(search_term)),
+                Artist.city.ilike("%{}%".format(search_term)),
+                Artist.state.ilike("%{}%".format(search_term)),
+            )
+        )
         .group_by(Artist.id)
         .all()
     )
@@ -46,6 +50,13 @@ def search_artists():
 @app.route("/artists/<int:artist_id>")
 def show_artist(artist_id):
     artist = Artist.query.get(artist_id)
+    shows = artist.shows
+    artist.past_shows = filter(
+        lambda show: show.start_time <= datetime.datetime.now(), shows
+    )
+    artist.upcoming_shows = filter(
+        lambda show: show.start_time > datetime.datetime.now(), shows
+    )
     return render_template("pages/show_artist.html", artist=ArtistSchema().dump(artist))
 
 
@@ -136,3 +147,6 @@ def create_artist_submission(entity):
         app.logger.info(err)
         flash("An error occurred. Artist " + artist.name + " could not be listed.")
     return render_template("pages/home.html")
+
+def get_recent_artists(limit=10):
+    return Artist.query.order_by(Artist.created_at.desc()).limit(limit)

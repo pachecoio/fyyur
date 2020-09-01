@@ -59,7 +59,9 @@ class BaseSchema(ma.Schema):
     image_link = fields.String()
     past_shows = fields.List(
         fields.Nested(VenueShowSchema),
-        attribute="shows"
+    )
+    upcoming_shows = fields.List(
+        fields.Nested(VenueShowSchema),
     )
 
     def build_genres(self, obj):
@@ -108,8 +110,28 @@ class ArtistEditSchema(BaseCreateSchema):
     seeking_venue = fields.Boolean()
 
 
-class ShowSchema(ma.Schema):
+class ShowListSchema(ma.Schema):
     id = fields.Integer()
     start_time = fields.DateTime()
     artist = fields.Nested(ArtistSchema)
+    artist_id = fields.Function(
+        lambda e: e.artist.id
+    )
+    artist_name = fields.Function(
+        lambda e: e.artist.name
+    )
+    artist_image_link = fields.Function(
+        lambda e: e.artist.image_link
+    )
     venue = fields.Nested(VenueSchema)
+    venue_id = fields.Function(
+        lambda e: e.venue.id
+    )
+    venue_name = fields.Function(
+        lambda e: e.venue.name
+    )
+
+class ShowCreateSchema(ma.Schema):
+    artist_id = fields.Integer()
+    venue_id = fields.Integer()
+    start_time = fields.DateTime()

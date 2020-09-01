@@ -5,6 +5,7 @@
     {%for show in shows %}
     <div class="col-sm-4">
         <div class="tile tile-show">
+            <button class="fa fa-trash show-delete" onclick="deleteShow({{show.id}})"></button>
             <img src="{{ show.artist_image_link }}" alt="Artist Image" />
             <h4>{{ show.start_time|datetime('full') }}</h4>
             <h5><a href="/artists/{{ show.artist_id }}">{{ show.artist_name }}</a></h5>
@@ -13,5 +14,25 @@
         </div>
     </div>
     {% endfor %}
+    <!-- Modal -->
+    <div id="delete-show-modal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" onclick="redirectTo('/')">&times;</button>
+                    <h4 class="modal-title" id="modal-title">Modal Header</h4>
+                </div>
+                <div class="modal-body">
+                    <p id="modal-message">Some text in the modal.</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="/" class="btn btn-default">Close</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
 </div>
 {% endblock %}

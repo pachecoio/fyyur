@@ -26,3 +26,14 @@ function deleteArtist(artistId) {
   $('#modal-message').text(`Artist with id ${artistId} deleted successfully!`)
   $('#delete-artist-modal').modal('show');
 }
+
+function deleteShow(showId) {
+  deleteRecord('shows', showId);
+  $('#modal-title').text(`Delete Show ${showId}`)
+  $('#modal-message').text(`Show with id ${showId} deleted successfully!`)
+  $('#delete-show-modal').modal('show');
+}
+
+function redirectTo(url) {
+  window.location.href = url;
+}
