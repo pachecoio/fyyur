@@ -1,7 +1,7 @@
 Fyyur
 -----
 
-Check the (Live Demo)[https://murmuring-crag-56857.herokuapp.com/]
+Check the [Live Demo](https://murmuring-crag-56857.herokuapp.com/)
 
 ### Introduction
 
