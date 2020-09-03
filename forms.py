@@ -1,8 +1,8 @@
 from datetime import datetime
 from flask_wtf import Form
-from wtforms import StringField, SelectField, SelectMultipleField, DateTimeField, BooleanField
+from wtforms import StringField, SelectField, SelectMultipleField, DateTimeField, BooleanField, IntegerField
 from wtforms.validators import DataRequired, AnyOf, URL
-from models import Genre
+from models import Genre, WeekDays
 
 DEFAULT_CHOICES = [
     ("Alternative", "Alternative"),
@@ -35,12 +35,25 @@ def build_genres(choices):
     )
 
 
-class ShowForm(Form):
-    artist_id = StringField("artist_id")
-    venue_id = StringField("venue_id")
-    start_time = DateTimeField(
-        "start_time", validators=[DataRequired()], default=datetime.today()
-    )
+def build_show_form(artists, venues):
+    class ShowForm(Form):
+        artist_id = SelectField(
+            "artist_id",
+            validators=[DataRequired()],
+            choices=artists,
+        )
+        venue_id = SelectField(
+            "venue_id",
+            validators=[DataRequired()],
+            choices=venues,
+        )
+        start_time = DateTimeField(
+            "start_time", validators=[DataRequired()], default=datetime.today()
+        )
+        duration = IntegerField(
+            "duration", validators=[DataRequired()], default=1
+        )
+    return ShowForm()
 
 
 def build_venue_form(choices):
@@ -192,6 +205,10 @@ def build_artist_form(choices):
         website = StringField("website")
         seeking_venue = BooleanField("seeking_venue")
         seeking_description = StringField("seeking_description")
+        week_days_availability = SelectMultipleField(
+            "week_days_availability",
+            choices=WeekDays.choices(),
+        )
         
     return ArtistForm()
 

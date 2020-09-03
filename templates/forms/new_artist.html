@@ -52,6 +52,13 @@
       <label for="website">Website</label>
       {{ form.website(class_ = 'form-control', autofocus = true) }}
     </div>
+    <hr/>
+    <h3>Availability</h3>
+    <div class="form-group">
+      <label for="week_days_availability">Week days</label>
+      <small>Ctrl+Click to select multiple</small>
+      {{ form.week_days_availability(class_ = 'form-control', placeholder='Monday, Tuesday...', autofocus = true) }}
+    </div>
     <input type="submit" value="Create Venue" class="btn btn-primary btn-lg btn-block">
   </form>
 </div>

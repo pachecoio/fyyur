@@ -154,10 +154,10 @@ p > i {
 .description {
   max-width: 450px;
 }
-.genres {
+.genres, .week_days {
   margin-bottom: 15px;
 }
-span.genre {
+span.genre, span.week_day {
   display: inline-block;
   font-family: monospace;
   padding: 4px 8px;
@@ -185,14 +185,20 @@ h2.monospace {
   height: 350px;
 }
 .tile {
-  text-align: center;
-  padding: 15px 25px;
+  text-align: start;
   border: solid 1px #ebebeb;
   height: 325px;
   margin-bottom: 15px;
 }
+.tile > :not(img):not(button) {
+  margin-left: 20px;
+  margin-right: 20px;
+}
 .tile img {
   max-height: 200px;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
 }
 .form-wrapper {
   max-width: 400px;
@@ -214,9 +220,23 @@ h2.monospace {
 }
 .show-delete {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
+  top: 5px;
+  right: 3px;
   background: transparent;
   border: none;
   color: red;
+  margin: 0;
+}
+.artist-availability {
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+.artist-availability > i {
+  margin-right: 10px;
+  color: rgb(31, 164, 253);
+}
+.tile-venue, .tile-artist {
+  height: auto;
 }

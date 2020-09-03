@@ -38,6 +38,17 @@
 			<i class="fab fa-facebook-f"></i> {% if artist.facebook_link %}<a href="{{ artist.facebook_link }}"
 				target="_blank">{{ artist.facebook_link }}</a>{% else %}No Facebook Link{% endif %}
 		</p>
+		{% if artist.week_days_availability %}
+		<div class="row artist-availability">
+			<i class="fa fa-calendar" aria-hidden="true"></i>
+			<h3>Availability</h3>
+		</div>
+		<div class="week_days">
+			{% for week_day in artist.week_days_availability %}
+			<span class="week_day">{{ week_day }}</span>
+			{% endfor %}
+		</div>
+		{% endif %}
 		{% if artist.seeking_venue %}
 		<div class="seeking">
 			<p class="lead">Currently seeking performance venues</p>

@@ -1,5 +1,14 @@
 from app import app
-from flask import Flask, render_template, request, Response, flash, redirect, url_for, jsonify
+from flask import (
+    Flask,
+    render_template,
+    request,
+    Response,
+    flash,
+    redirect,
+    url_for,
+    jsonify,
+)
 from models import Venue, Artist, Genre, Show
 from forms import build_artist_form
 from schemas import ArtistListSchema, ArtistCreateSchema, ArtistSchema, ArtistEditSchema
@@ -7,6 +16,8 @@ from decorators import parse_with
 from sqlalchemy import exc, func, or_
 from config.database import db
 import datetime
+from enum import Enum
+from models import WeekDays
 
 #  Artists
 #  ----------------------------------------------------------------
@@ -98,23 +109,21 @@ def edit_artist_submission(entity, artist_id):
 @app.route("/artists/<artist_id>", methods=["DELETE"])
 def delete_artist(artist_id):
     artist = Artist.query.get(artist_id)
-    
+
     if not artist:
-        return jsonify(
-            message="artist not found with id".format(artist_id),
-        ), 404
+        return jsonify(message="artist not found with id".format(artist_id),), 404
     try:
         db.session.delete(artist)
         db.session.commit()
-        return jsonify(
-            message="artist {} delete successfully".format(artist.name),
-        ), 202
+        return (
+            jsonify(message="artist {} delete successfully".format(artist.name),),
+            202,
+        )
     except exc.SQLAlchemyError as err:
         db.session.rollback()
         app.logger.info(err)
-        return jsonify(
-            message="Error deleting artist {}".format(artist.name),
-        ), 400
+        return jsonify(message="Error deleting artist {}".format(artist.name),), 400
+
 
 #  Create Artist
 #  ----------------------------------------------------------------
@@ -147,6 +156,7 @@ def create_artist_submission(entity):
         app.logger.info(err)
         flash("An error occurred. Artist " + artist.name + " could not be listed.")
     return render_template("pages/home.html")
+
 
 def get_recent_artists(limit=10):
     return Artist.query.order_by(Artist.created_at.desc()).limit(limit)

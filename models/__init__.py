@@ -1,9 +1,29 @@
 from config.database import db
 import datetime
+from enum import Enum
 
 # ----------------------------------------------------------------------------#
 # Models.
 # ----------------------------------------------------------------------------#
+
+
+class WeekDays(Enum):
+    Sunday = 0
+    Monday = 1
+    Tuesday = 2
+    Wednesday = 3
+    Thursday = 4
+    Friday = 5
+    Saturday = 6
+
+    @classmethod
+    def choices(cls):
+        return [(choice.value, str(choice).replace("WeekDays.", "")) for choice in cls]
+
+    @classmethod
+    def coerce(cls, item):
+        return item if isinstance(item, WeekDays) else WeekDays[item]
+
 
 genre_venue = db.Table(
     "genre_venue",
@@ -43,13 +63,11 @@ class Venue(db.Model, TimestampMixin):
     facebook_link = db.Column(db.String(120))
     website = db.Column(db.String(120))
     genres = db.relationship(
-        "Genre",
-        secondary=genre_venue,
-        backref=db.backref("venues", lazy=True),
+        "Genre", secondary=genre_venue, backref=db.backref("venues", lazy=True),
     )
     seeking_talent = db.Column(db.Boolean)
     seeking_description = db.Column(db.String(500))
-    shows = db.relationship("Show", backref=db.backref("venue", lazy=True))
+    shows = db.relationship("Show", backref=db.backref("venue", lazy=True), cascade="all, delete-orphan")
 
 
 class Artist(db.Model, TimestampMixin):
@@ -66,14 +84,12 @@ class Artist(db.Model, TimestampMixin):
     facebook_link = db.Column(db.String(120))
     website = db.Column(db.String(120))
     genres = db.relationship(
-        "Genre",
-        secondary=genre_artist,
-        backref=db.backref("artists", lazy=True),
+        "Genre", secondary=genre_artist, backref=db.backref("artists", lazy=True),
     )
     seeking_venue = db.Column(db.Boolean)
     seeking_description = db.Column(db.String(500))
-    shows = db.relationship("Show", backref=db.backref("artist", lazy=True),)
-
+    shows = db.relationship("Show", backref=db.backref("artist", lazy=True), cascade="all, delete-orphan")
+    week_days_availability = db.Column(db.String())
 
 
 class Show(db.Model, TimestampMixin):
@@ -81,6 +97,10 @@ class Show(db.Model, TimestampMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     start_time = db.Column(db.DateTime)
+    end_time = db.Column(db.DateTime)
     venue_id = db.Column(db.Integer, db.ForeignKey("Venue.id", ondelete="CASCADE"))
     artist_id = db.Column(db.Integer, db.ForeignKey("Artist.id", ondelete="CASCADE"))
+    duration = db.Column(db.Integer)
+
+    
 

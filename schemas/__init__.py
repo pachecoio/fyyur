@@ -1,6 +1,7 @@
 from app import app
 from flask_marshmallow import Marshmallow
 from marshmallow import fields
+from models import WeekDays
 
 ma = Marshmallow(app)
 
@@ -90,6 +91,17 @@ class VenueEditSchema(BaseCreateSchema):
 
 class ArtistSchema(BaseSchema):
     seeking_venue = fields.Boolean()
+    week_days_availability = fields.Method("build_week_days")
+
+    def build_week_days(self, artist):
+        if not artist.week_days_availability:
+            return []
+        return [
+            WeekDays(int(item)).name
+            for item in artist.week_days_availability.replace("{", "")
+            .replace("}", "")
+            .split(",")
+        ]
 
 
 class ArtistListSchema(ma.Schema):
@@ -99,6 +111,7 @@ class ArtistListSchema(ma.Schema):
 
 class ArtistCreateSchema(BaseCreateSchema):
     seeking_venue = fields.Boolean()
+    week_days_availability = fields.List(fields.Integer())
 
 class ArtistEditSchema(BaseCreateSchema):
     name = fields.String()
@@ -108,6 +121,7 @@ class ArtistEditSchema(BaseCreateSchema):
     phone = fields.String()
     city = fields.String()
     seeking_venue = fields.Boolean()
+    week_days_availability = fields.List(fields.Integer())
 
 
 class ShowListSchema(ma.Schema):
@@ -135,3 +149,4 @@ class ShowCreateSchema(ma.Schema):
     artist_id = fields.Integer()
     venue_id = fields.Integer()
     start_time = fields.DateTime()
+    duration = fields.Integer()
