@@ -8,4 +8,4 @@ DEBUG = True
 
 # Connect to the database
 
-SQLALCHEMY_DATABASE_URI = "postgres://postgres:root@localhost:5432/fyyur"
+SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or "postgres://postgres:root@localhost:5432/fyyur"
