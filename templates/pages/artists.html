@@ -1,6 +1,14 @@
 {% extends 'layouts/main.html' %}
 {% block title %}Fyyur | Artists{% endblock %}
 {% block content %}
+{% if artists|length == 0 %}
+<div class="empty">
+	<h3>
+		0 Artists Found
+	</h3>
+	<a href="/artists/create"><button class="btn btn-default btn-lg">Post an artist</button></a>
+</div>
+{% endif %}
 <ul class="items">
 	{% for artist in artists %}
 	<li>
